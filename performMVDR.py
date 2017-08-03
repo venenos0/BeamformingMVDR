@@ -28,12 +28,12 @@ return D
 def Weights_calc(H, X):
     W = numpy.zeros(H.shape,dtype=complex)
     num_sensors, N_fft=H.shape
-    for freqBinIndex in range(N_fft-1,-1,-1):
-        HH = H[:, freqBinIndex].T
-        R = X[:, :, freqBinIndex] + numpy.eye(num_sensors)
+    for decr in range(N_fft-1,-1,-1):
+        HH = H[:, decr].T
+        R = X[:, :, decr] + numpy.eye(num_sensors)
         numerator = numpy.dot(numpy.linalg.inv(R),HH)
         denominator = numpy.dot(nominator.conj().T,HH)
-        W[:, freqBinIndex] = nominator / denominator
+        W[:, decr] = nominator / denominator
     return W
 
 
